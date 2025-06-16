@@ -11,6 +11,7 @@ import { createDiscord } from '@purinton/discord';
     const version = packageJson.version;
     const name = `🎧 Leveling v${version}`;
     const status = 'online';
+    const db = await createDb();
     const client = await createDiscord({
         log,
         rootDir: path(import.meta),
@@ -24,12 +25,14 @@ import { createDiscord } from '@purinton/discord';
             path,
             pathUrl,
             presence: { activities: [{ name, type: 4 }], status },
-            db: await createDb(),
+            db
         },
     });
     registerSignals({
         shutdownHook: async () => {
             await client.destroy();
+            await db.end();
+            log.info('Shutdown complete.');
         }
     });
 })();

@@ -1,11 +1,10 @@
-import log from '../log.mjs';
-import dbPromise from '../db.mjs';
-import { formatTime } from '../custom/utils.mjs';
-import { getMsg } from '../locales.mjs';
+
+import { formatTime } from '../src/utils.mjs';
 
 // Command handler for /leaderboard (standard event export style)
-export default async function (interaction, { log: injectedLog = log, db: injectedDb, formatTime: injectedFormatTime = formatTime, getMsg: injectedGetMsg = getMsg } = {}) {
-    const db = injectedDb || await dbPromise;
+export default async function ({ log, msg, db }, interaction, {
+    formatTimefn = formatTime,
+}) {
     try {
         const guildId = interaction.guildId;
         const [rows] = await db.query(
@@ -14,25 +13,25 @@ export default async function (interaction, { log: injectedLog = log, db: inject
         );
         if (!rows || rows.length === 0) {
             await interaction.reply({
-                content: injectedGetMsg(interaction.locale, 'leaderboard_not_found', 'No leaderboard data found.'),
-                flags: 1 << 6,
+                content: msg('leaderboard_not_found', 'No leaderboard data found.'),
+                flags: 1 << 6, // EPHEMERAL
             });
             return;
         }
-        let leaderboard = rows.map((row, i) => `#${i+1} <@${row.user_id}>: **${injectedFormatTime(row.total_seconds)}** (Lvl ${row.last_level})`).join('\n');
+        let leaderboard = rows.map((row, i) => `#${i + 1} <@${row.user_id}>: **${formatTimefn(row.total_seconds)}** (Lvl ${row.last_level})`).join('\n');
         await interaction.reply({
-            content: injectedGetMsg(interaction.locale, 'leaderboard_reply', `Top 10 Voice Leaderboard:\n${leaderboard}`).replace('{leaderboard}', leaderboard),
-            flags: 1 << 6,
+            content: msg('leaderboard_reply', `Top 10 Voice Leaderboard:\n${leaderboard}`).replace('{leaderboard}', leaderboard),
+            flags: 1 << 6, // EPHEMERAL
         });
     } catch (err) {
-        injectedLog.error('Error in /leaderboard handler', err);
+        log.error('Error in /leaderboard handler', err);
         try {
             await interaction.reply({
-                content: injectedGetMsg(interaction.locale, 'leaderboard_error', 'Error fetching leaderboard.'),
-                flags: 1 << 6,
+                content: msg('leaderboard_error', 'Error fetching leaderboard.'),
+                flags: 1 << 6, // EPHEMERAL
             });
         } catch (e) {
-            injectedLog.error('Failed to reply with error message', e);
+            log.error('Failed to reply with error message', e);
         }
     }
 }

@@ -1,12 +1,10 @@
-import log from '../log.mjs';
-import dbPromise from '../db.mjs';
-import { formatTime } from '../custom/utils.mjs';
-import { requiredSecondsForLevel } from '../custom/utils.mjs';
-import { getMsg } from '../locales.mjs';
+import { formatTime, requiredSecondsForLevel } from '../src/utils.mjs';
 
 // Command handler for /stats (standard event export style)
-export default async function (interaction, { log: injectedLog = log, db: injectedDb, formatTime: injectedFormatTime = formatTime, requiredSecondsForLevel: injectedRequiredSecondsForLevel = requiredSecondsForLevel, getMsg: injectedGetMsg = getMsg } = {}) {
-    const db = injectedDb || await dbPromise;
+export default async function ({ log, msg, db }, interaction, {
+    formatTimefn = formatTime,
+    requiredSecondsForLevelfn = requiredSecondsForLevel,
+} = {}) {
     try {
         const userOption = interaction.options.getUser && interaction.options.getUser('user');
         const userToQuery = userOption || interaction.user;
@@ -17,7 +15,7 @@ export default async function (interaction, { log: injectedLog = log, db: inject
         );
         if (!rows || rows.length === 0) {
             await interaction.reply({
-                content: injectedGetMsg(interaction.locale, 'stats_not_found', `No stats found for ${userToQuery.id === interaction.user.id ? 'you' : `<@${userToQuery.id}>`}.`).replace('{user}', userToQuery.id === interaction.user.id ? 'you' : `<@${userToQuery.id}>`),
+                content: msg('stats_not_found', `No stats found for ${userToQuery.id === interaction.user.id ? 'you' : `<@${userToQuery.id}>`}.`).replace('{user}', userToQuery.id === interaction.user.id ? 'you' : `<@${userToQuery.id}>`),
                 flags: 1 << 6,
             });
             return;
@@ -25,7 +23,7 @@ export default async function (interaction, { log: injectedLog = log, db: inject
         const { total_seconds, last_level } = rows[0];
         const now = Math.floor(Date.now() / 1000);
         const nextLevel = last_level + 1;
-        const required = injectedRequiredSecondsForLevel(nextLevel);
+        const required = requiredSecondsForLevelfn(nextLevel);
         const remaining = Math.max(0, required - total_seconds);
         // Check if user is currently in a call (open session)
         const [sessionRows] = await db.query(
@@ -40,7 +38,7 @@ export default async function (interaction, { log: injectedLog = log, db: inject
             // User is in a call
             inCall = true;
             const nextLevelTimestamp = now + remaining;
-            nextLevelMsg = injectedGetMsg(interaction.locale, 'stats_next_level', `\n- Time until next level (**${nextLevel}**): <t:${nextLevelTimestamp}:R>`)
+            nextLevelMsg = msg('stats_next_level', `\n- Time until next level (**${nextLevel}**): <t:${nextLevelTimestamp}:R>`)
                 .replace('{level}', nextLevel)
                 .replace('{timestamp}', nextLevelTimestamp);
         } else {
@@ -50,11 +48,11 @@ export default async function (interaction, { log: injectedLog = log, db: inject
                 const hours = Math.floor(remaining / 3600);
                 const minutes = Math.floor((remaining % 3600) / 60);
                 let timeStr = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
-                nextLevelMsg = injectedGetMsg(interaction.locale, 'stats_next_level_static', `\n- Time until next level (**${nextLevel}**): **${timeStr}**`)
+                nextLevelMsg = msg('stats_next_level_static', `\n- Time until next level (**${nextLevel}**): **${timeStr}**`)
                     .replace('{level}', nextLevel)
                     .replace('{time}', timeStr);
             } else {
-                nextLevelMsg = injectedGetMsg(interaction.locale, 'stats_max_level', '\n- You have reached the max level!');
+                nextLevelMsg = msg('stats_max_level', '\n- You have reached the max level!');
             }
             // Find last time user left a call
             const [lastSessionRows] = await db.query(
@@ -63,7 +61,7 @@ export default async function (interaction, { log: injectedLog = log, db: inject
             );
             if (lastSessionRows && lastSessionRows.length > 0 && lastSessionRows[0].leave_time) {
                 lastSeenTimestamp = Math.floor(new Date(lastSessionRows[0].leave_time).getTime() / 1000);
-                lastSeenMsg = injectedGetMsg(interaction.locale, 'stats_last_seen', '\n- Last seen in voice: <t:{lastseen}:R>')
+                lastSeenMsg = msg('stats_last_seen', '\n- Last seen in voice: <t:{lastseen}:R>')
                     .replace('{lastseen}', lastSeenTimestamp);
             }
         }
@@ -78,10 +76,9 @@ export default async function (interaction, { log: injectedLog = log, db: inject
           [userToQuery.id, guildId]
         );
         const { session_count, avg_length, max_length } = sessionStats;
-        const avgStr = injectedFormatTime(Math.round(avg_length) || 0);
-        const maxStr = injectedFormatTime(max_length || 0);
-        const sessionStatsMsg = injectedGetMsg(
-            interaction.locale,
+        const avgStr = formatTimefn(Math.round(avg_length) || 0);
+        const maxStr = formatTimefn(max_length || 0);
+        const sessionStatsMsg = msg(
             'stats_sessions',
             `\n- Total sessions: **${session_count}**\n- Avg session: **${avgStr}**\n- Longest session: **${maxStr}**`
         )
@@ -89,13 +86,12 @@ export default async function (interaction, { log: injectedLog = log, db: inject
             .replace('{avg}', avgStr)
             .replace('{max}', maxStr);
         await interaction.reply({
-            content: injectedGetMsg(
-                interaction.locale,
+            content: msg(
                 'stats_reply',
                 `${userToQuery.id === interaction.user.id ? 'Your' : `<@${userToQuery.id}>'s`} voice stats:`
             )
                 .replace('{user}', userToQuery.id === interaction.user.id ? 'Your' : `<@${userToQuery.id}>'s`)
-                .replace('{time}', injectedFormatTime(total_seconds))
+                .replace('{time}', formatTimefn(total_seconds))
                 .replace('{level}', last_level)
                 .replace('{next}', nextLevelMsg)
                 .replace('{sessions}', sessionStatsMsg)
@@ -103,14 +99,14 @@ export default async function (interaction, { log: injectedLog = log, db: inject
             flags: 1 << 6,
         });
     } catch (err) {
-        injectedLog.error('Error in /stats handler', err);
+        log.error('Error in /stats handler', err);
         try {
             await interaction.reply({
-                content: injectedGetMsg(interaction.locale, 'stats_error', 'Error fetching stats.'),
+                content: msg('stats_error', 'Error fetching stats.'),
                 flags: 1 << 6,
             });
         } catch (e) {
-            injectedLog.error('Failed to reply with error message', e);
+            log.error('Failed to reply with error message', e);
         }
     }
 }

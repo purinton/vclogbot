@@ -1,8 +1,8 @@
 import { jest } from '@jest/globals';
-import statsHandler from '../../src/commands/stats.mjs';
+import statsHandler from '../../commands/stats.mjs';
 
 describe('/stats command handler', () => {
-    let mockLog, mockDb, mockFormatTime, mockRequiredSecondsForLevel, mockGetMsg, interaction;
+    let mockLog, mockDb, mockFormatTime, mockRequiredSecondsForLevel, mockMsg, interaction;
     const now = new Date('2025-06-04T12:00:00Z');
     const nowEpoch = Math.floor(now.getTime() / 1000);
 
@@ -11,7 +11,7 @@ describe('/stats command handler', () => {
         mockDb = { query: jest.fn() };
         mockFormatTime = jest.fn((s) => `${s}s`);
         mockRequiredSecondsForLevel = jest.fn((lvl) => lvl * 100);
-        mockGetMsg = jest.fn((locale, key, fallback) => {
+        mockMsg = jest.fn((key, fallback) => {
             if (key === 'stats_reply') {
                 // Simulate the real locale string with {sessions} placeholder
                 return '{user} voice stats:\n- Total time: **{time}**\n- Level: **{level}**{next}{sessions}';
@@ -34,12 +34,9 @@ describe('/stats command handler', () => {
 
     it('replies with not found if user has no stats', async () => {
         mockDb.query.mockResolvedValueOnce([[]]);
-        await statsHandler(interaction, {
-            log: mockLog,
-            db: mockDb,
-            formatTime: mockFormatTime,
-            requiredSecondsForLevel: mockRequiredSecondsForLevel,
-            getMsg: mockGetMsg
+        await statsHandler({ log: mockLog, msg: mockMsg, db: mockDb }, interaction, {
+            formatTimefn: mockFormatTime,
+            requiredSecondsForLevelfn: mockRequiredSecondsForLevel
         });
         expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
             content: expect.stringContaining('No stats found'),
@@ -53,12 +50,9 @@ describe('/stats command handler', () => {
             .mockResolvedValueOnce([[]]) // not in call
             .mockResolvedValueOnce([[{ leave_time: now.toISOString() }]]) // last seen
             .mockResolvedValueOnce([[{ session_count: 5, avg_length: 120, max_length: 300 }]]); // session summary
-        await statsHandler(interaction, {
-            log: mockLog,
-            db: mockDb,
-            formatTime: mockFormatTime,
-            requiredSecondsForLevel: mockRequiredSecondsForLevel,
-            getMsg: mockGetMsg
+        await statsHandler({ log: mockLog, msg: mockMsg, db: mockDb }, interaction, {
+            formatTimefn: mockFormatTime,
+            requiredSecondsForLevelfn: mockRequiredSecondsForLevel
         });
         expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
             content: expect.stringContaining('voice stats:'),
@@ -76,14 +70,12 @@ describe('/stats command handler', () => {
         }));
         expect(mockFormatTime).toHaveBeenCalledWith(150);
         expect(mockRequiredSecondsForLevel).toHaveBeenCalledWith(2);
-        // check that getMsg is called for both stats_sessions and stats_reply
-        expect(mockGetMsg).toHaveBeenCalledWith(
-            'en-US',
+        // check that msg is called for both stats_sessions and stats_reply
+        expect(mockMsg).toHaveBeenCalledWith(
             'stats_sessions',
             expect.stringContaining('Total sessions:')
         );
-        expect(mockGetMsg).toHaveBeenCalledWith(
-            'en-US',
+        expect(mockMsg).toHaveBeenCalledWith(
             'stats_reply',
             expect.stringContaining('voice stats:')
         );
@@ -94,12 +86,9 @@ describe('/stats command handler', () => {
             .mockResolvedValueOnce([[{ total_seconds: 200, last_level: 2 }]]) // user stats
             .mockResolvedValueOnce([[{ join_time: now.toISOString() }]]) // in call
             .mockResolvedValueOnce([[{ session_count: 3, avg_length: 130, max_length: 260 }]]); // session summary
-        await statsHandler(interaction, {
-            log: mockLog,
-            db: mockDb,
-            formatTime: mockFormatTime,
-            requiredSecondsForLevel: mockRequiredSecondsForLevel,
-            getMsg: mockGetMsg
+        await statsHandler({ log: mockLog, msg: mockMsg, db: mockDb }, interaction, {
+            formatTimefn: mockFormatTime,
+            requiredSecondsForLevelfn: mockRequiredSecondsForLevel
         });
         expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
             content: expect.stringContaining('voice stats:'),
@@ -115,14 +104,12 @@ describe('/stats command handler', () => {
         expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
             content: expect.stringContaining('Longest session: **260s**'),
         }));
-        // check that getMsg is called for both stats_sessions and stats_reply
-        expect(mockGetMsg).toHaveBeenCalledWith(
-            'en-US',
+        // check that msg is called for both stats_sessions and stats_reply
+        expect(mockMsg).toHaveBeenCalledWith(
             'stats_sessions',
             expect.stringContaining('Total sessions:')
         );
-        expect(mockGetMsg).toHaveBeenCalledWith(
-            'en-US',
+        expect(mockMsg).toHaveBeenCalledWith(
             'stats_reply',
             expect.stringContaining('voice stats:')
         );
@@ -130,12 +117,9 @@ describe('/stats command handler', () => {
 
     it('handles error and replies with error message', async () => {
         mockDb.query.mockRejectedValueOnce(new Error('fail'));
-        await statsHandler(interaction, {
-            log: mockLog,
-            db: mockDb,
-            formatTime: mockFormatTime,
-            requiredSecondsForLevel: mockRequiredSecondsForLevel,
-            getMsg: mockGetMsg
+        await statsHandler({ log: mockLog, msg: mockMsg, db: mockDb }, interaction, {
+            formatTimefn: mockFormatTime,
+            requiredSecondsForLevelfn: mockRequiredSecondsForLevel
         });
         expect(mockLog.error).toHaveBeenCalledWith('Error in /stats handler', expect.any(Error));
         expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
@@ -147,12 +131,9 @@ describe('/stats command handler', () => {
     it('logs error if reply with error message fails', async () => {
         mockDb.query.mockRejectedValueOnce(new Error('fail'));
         interaction.reply.mockRejectedValueOnce(new Error('fail2'));
-        await statsHandler(interaction, {
-            log: mockLog,
-            db: mockDb,
-            formatTime: mockFormatTime,
-            requiredSecondsForLevel: mockRequiredSecondsForLevel,
-            getMsg: mockGetMsg
+        await statsHandler({ log: mockLog, msg: mockMsg, db: mockDb }, interaction, {
+            formatTimefn: mockFormatTime,
+            requiredSecondsForLevelfn: mockRequiredSecondsForLevel
         });
         expect(mockLog.error).toHaveBeenCalledWith('Failed to reply with error message', expect.any(Error));
     });
