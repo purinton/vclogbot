@@ -1,6 +1,6 @@
 // Tests for sendMessage in messageService.mjs
 import { jest } from '@jest/globals';
-import { sendMessage } from '../../src/custom/messageService.mjs';
+import { sendMessage } from '../../src/messageService.mjs';
 
 const mockChannel = {
     send: jest.fn().mockResolvedValue(true),
@@ -24,25 +24,25 @@ describe('sendMessage', () => {
 
     it('sends a message to the correct channel', async () => {
         mockClient.channels.fetch.mockResolvedValue(mockChannel);
-        const channelId = '123';
+        const channel_id = '123';
         const content = 'Hello!';
-        await sendMessage(channelId, content, mockClient, mockLogger);
-        expect(mockClient.channels.fetch).toHaveBeenCalledWith(channelId);
+        await sendMessage({ client: mockClient, channel_id, content, log: mockLogger });
+        expect(mockClient.channels.fetch).toHaveBeenCalledWith(channel_id);
         expect(mockChannel.send).toHaveBeenCalledWith({
             content,
             allowedMentions: { parse: [] },
         });
         expect(mockLogger.debug).toHaveBeenCalledWith(
-            `Message sent to channel ${channelId}: ${content}`
+            `Message sent to channel ${channel_id}: ${content}`
         );
     });
 
     it('logs and returns if channel is not found', async () => {
         mockClient.channels.fetch.mockResolvedValue(null);
-        const channelId = 'notfound';
-        await sendMessage(channelId, 'test', mockClient, mockLogger);
+        const channel_id = 'notfound';
+        await sendMessage({ client: mockClient, channel_id, content: 'test', log: mockLogger });
         expect(mockLogger.debug).toHaveBeenCalledWith(
-            `Channel ${channelId} not found`
+            `Channel ${channel_id} not found`
         );
         expect(mockChannel.send).not.toHaveBeenCalled();
     });
@@ -50,7 +50,7 @@ describe('sendMessage', () => {
     it('logs error if send throws', async () => {
         mockClient.channels.fetch.mockResolvedValue(mockChannel);
         mockChannel.send.mockRejectedValueOnce(new Error('fail'));
-        await sendMessage('123', 'fail', mockClient, mockLogger);
+        await sendMessage({ client: mockClient, channel_id: '123', content: 'fail', log: mockLogger });
         expect(mockLogger.error).toHaveBeenCalledWith(
             'Error sending message:',
             expect.any(Error)

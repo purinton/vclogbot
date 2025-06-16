@@ -1,5 +1,5 @@
 // Tests for utils.mjs
-import * as utils from '../../src/custom/utils.mjs';
+import * as utils from '../../src/utils.mjs';
 
 describe('utils', () => {
   it('should export at least one function', () => {

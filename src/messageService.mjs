@@ -1,23 +1,18 @@
 // Message sending utility for Discord
-import log from '../log.mjs';
-
-export async function sendMessage(channelId, content, client = global.client || null, logger = log) {
+export async function sendMessage({ client, channel_id, content, log }) {
   try {
     if (!client) {
-      logger.error?.('Discord client is not initialized');
+      log.error?.('Discord client is not initialized');
       return;
     }
-    const channel = await client.channels.fetch(channelId);
+    const channel = await client.channels.fetch(channel_id);
     if (!channel) {
-      logger.debug?.(`Channel ${channelId} not found`);
+      log.debug?.(`Channel ${channel_id} not found`);
       return;
     }
-    await channel.send({
-      content,
-      allowedMentions: { parse: [] },
-    });
-    logger.debug?.(`Message sent to channel ${channelId}: ${content}`);
+    await channel.send({ content, allowedMentions: { parse: [] } });
+    log.debug?.(`Message sent to channel ${channel_id}: ${content}`);
   } catch (e) {
-    logger.error?.('Error sending message:', e);
+    log.error?.('Error sending message:', e);
   }
 }

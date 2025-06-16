@@ -1,13 +1,18 @@
 // Timer utility for periodic level-up checks
-import dbPromise from '../db.mjs';
-import log from '../log.mjs';
 import { calculateLevel, requiredSecondsForLevel, getCurrentTimestamp } from './utils.mjs';
+import { sendMessage } from './messageService.mjs';
 
-export const timerFunction = async () => {
-    const db = await dbPromise;
+export const timerFunction = async (
+    { client, log, db },
+    {
+        calculateLevelfn = calculateLevel,
+        requiredSecondsForLevelfn = requiredSecondsForLevel,
+        getCurrentTimestampfn = getCurrentTimestamp,
+        sendMessagefn = sendMessage,
+    } = {}
+) => {
     try {
-        log.debug('Timer function started');
-        // Use db.query for mysql2
+        log.debug('Timer tick', { time: getCurrentTimestampfn() });
         const [openSessions] = await db.query(`SELECT * FROM sessions WHERE leave_time IS NULL`);
         if (!openSessions || openSessions.length === 0) return;
         for (const session of openSessions) {
@@ -44,21 +49,21 @@ export const timerFunction = async () => {
                 user = { user_id, guild_id, total_seconds: totalSeconds, last_level: 0 };
             }
             log.debug(`User before level calculation: ${JSON.stringify(user)}`);
-            const { level, leveledUp } = calculateLevel(totalSeconds, user.last_level, requiredSecondsForLevel);
+            const { level, leveledUp } = calculateLevelfn(totalSeconds, user.last_level, requiredSecondsForLevelfn);
             log.debug(`Level calculation result: level=${level}, leveledUp=${leveledUp}`);
             await db.query(
                 `UPDATE users SET total_seconds = ?, last_level = ? WHERE user_id = ? AND guild_id = ?`,
                 [totalSeconds, level, user_id, guild_id]
             );
             log.debug(`Updated user: user_id=${user_id}, guild_id=${guild_id}, total_seconds=${totalSeconds}, last_level=${level}`);
-            if (leveledUp && global.messageService) {
-                const msg = `${getCurrentTimestamp()} <@${user_id}> reached level ${level}! 🎉 `;
+            if (leveledUp) {
+                const msg = `${getCurrentTimestampfn()} <@${user_id}> reached level ${level}! 🎉 `;
                 log.debug(`Sending level up message: ${msg}`);
-                await global.messageService.sendMessage(channel_id, msg);
+                await sendMessagefn({ client, channel_id, content: msg, log });
             }
         }
     } catch (error) {
         log.error('Error in timerFunction:', error);
         throw error; // Re-throw to be caught by the caller
     }
-}
+};

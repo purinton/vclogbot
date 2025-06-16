@@ -1,6 +1,6 @@
 // Tests for dbSanityCheck.mjs
 import { jest } from '@jest/globals';
-import * as dbSanityCheck from '../../src/custom/dbSanityCheck.mjs';
+import * as dbSanityCheck from '../../src/dbSanityCheck.mjs';
 
 describe('dbSanityCheck', () => {
   it('should export a main function', () => {
@@ -15,8 +15,7 @@ describe('dbSanityCheck', () => {
         .mockResolvedValueOnce([{}]) // insert/update
     };
     const mockLog = { info: jest.fn(), error: jest.fn() };
-    const mockRequiredSecondsForLevel = jest.fn().mockImplementation(lvl => lvl * 100);
-    await expect(dbSanityCheck.main({ db: mockDb, log: mockLog, requiredSecondsForLevel: mockRequiredSecondsForLevel })).resolves.not.toThrow();
+    await expect(dbSanityCheck.main({ db: mockDb, log: mockLog })).resolves.not.toThrow();
     expect(mockDb.query).toHaveBeenCalled();
     expect(mockLog.info).toHaveBeenCalledWith(expect.stringContaining('Updated user'));
     expect(mockLog.info).toHaveBeenCalledWith('Sanity check complete.');
