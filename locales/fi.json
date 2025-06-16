@@ -1,3 +1,14 @@
 {
-    "help": "Tämä on ohjeteksti."
+    "help": "**VCLogBot ohjeet**\n\nTämä botti tarjoaa puhe- ja videokeskustelujen (VC) tasojärjestelmän palvelimellesi!\n\n**Miten se toimii:**\n- Saat tasoja viettämällä aikaa puheluissa.\n- Jokainen uusi taso vaatii enemmän aikaa puheluissa.\n- Useimmat ominaisuudet toimivat automaattisesti—liity vain puheluun ja ala kerätä tasoja!\n\n**Komennot:**\n- `/stats` — Näytä omat VC-tilastosi ja tasosi eteneminen.\n- `/leaderboard` — Katso 10 parhaan käyttäjän VC-aika.\n\nNauti keskustelusta ja katso kuka nousee tulostaulukossa!",
+    "stats_not_found": "Tilastoja ei löydetty käyttäjälle {user}.",
+    "stats_reply": "{user} puhetiedot:\n- Kokonaika: **{time}**\n- Taso: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Aikaa seuraavaan tasoon (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Aikaa seuraavaan tasoon (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Viimeksi nähty puheessa: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Olet saavuttanut maksimitason!",
+    "stats_error": "Virhe tilastojen hakemisessa.",
+    "leaderboard_not_found": "Tulostaulukon tietoja ei löytynyt.",
+    "leaderboard_reply": "Top 10 ääni-tulostaulukko:\n{leaderboard}",
+    "leaderboard_error": "Virhe tulostaulukon hakemisessa.",
+    "stats_sessions": "\n- Kokonaisistunnot: **{count}**\n- Keski-istunnon kesto: **{avg}**\n- Pisimmän istunnon kesto: **{max}**"
 }

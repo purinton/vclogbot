@@ -1,3 +1,14 @@
 {
-    "help": "This is the help text."
+    "help": "**VCLogBot Help**\n\nThis bot provides a VC (voice/video chat) leveling system for your server!\n\n**How it works:**\n- Earn levels by spending time in voice or video calls.\n- Each new level requires more time in calls to achieve.\n- Most features are automatic—just join a call and start leveling up!\n\n**Commands:**\n- `/stats` — View your own VC stats and level progress.\n- `/leaderboard` — See the top 10 users with the most VC time.\n\nEnjoy chatting and see who climbs the leaderboard!",
+    "stats_not_found": "No stats found for {user}.",
+    "stats_reply": "{user} voice stats:\n- Total time: **{time}**\n- Level: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Time until next level (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Time until next level (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Last seen in voice: <t:{lastseen}:R>",
+    "stats_max_level": "\n- You have reached the max level!",
+    "stats_error": "Error fetching stats.",
+    "leaderboard_not_found": "No leaderboard data found.",
+    "leaderboard_reply": "Top 10 Voice Leaderboard:\n{leaderboard}",
+    "leaderboard_error": "Error fetching leaderboard.",
+    "stats_sessions": "\n- Total sessions: **{count}**\n- Avg session: **{avg}**\n- Longest session: **{max}**"
 }

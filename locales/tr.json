@@ -1,3 +1,14 @@
 {
-    "help": "Bu yardım metnidir."
+    "help": "**VCLogBot Yardım**\n\nBu bot, sunucunuz için bir VC (ses/video sohbet) seviye sistemi sağlar!\n\n**Nasıl çalışır:**\n- Ses veya video görüşmelerinde zaman geçirerek seviye kazanırsınız.\n- Her yeni seviye, elde etmek için daha fazla görüşme süresi gerektirir.\n- Çoğu özellik otomatik—sadece bir görüşmeye katılın ve seviye atlamaya başlayın!\n\n**Komutlar:**\n- `/stats` — Kendi VC istatistiklerinizi ve seviye ilerlemenizi görün.\n- `/leaderboard` — En çok VC süresine sahip ilk 10 kullanıcıyı görün.\n\nSohbetin tadını çıkarın ve lider tabloda kimlerin yükseldiğini görün!",
+    "stats_not_found": "{user} için istatistik bulunamadı.",
+    "stats_reply": "{user} ses istatistikleri:\n- Toplam süre: **{time}**\n- Seviye: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Sonraki seviye için gereken süre (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Sonraki seviye için gereken süre (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Son görüşme zamanı: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Maksimum seviyeye ulaştınız!",
+    "stats_error": "İstatistikler alınırken hata oluştu.",
+    "leaderboard_not_found": "Lider tablosu verisi bulunamadı.",
+    "leaderboard_reply": "İlk 10 Ses Lider Tablosu:\n{leaderboard}",
+    "leaderboard_error": "Lider tablosu alınırken hata oluştu.",
+    "stats_sessions": "\n- Toplam oturum: **{count}**\n- Ortalama oturum: **{avg}**\n- En uzun oturum: **{max}**"
 }

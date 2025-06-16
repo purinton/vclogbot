@@ -1,3 +1,14 @@
 {
-    "help": "To jest tekst pomocy."
+    "help": "**VCLogBot Pomoc**\n\nTen bot oferuje system poziomów za czas spędzony w rozmowach głosowych/wideo na twoim serwerze!\n\n**Jak to działa:**\n- Zdobywaj poziomy spędzając czas w rozmowach głosowych lub wideo.\n- Każdy nowy poziom wymaga więcej czasu rozmowy.\n- Większość funkcji działa automatycznie — po prostu dołącz do rozmowy i zdobywaj poziomy!\n\n**Komendy:**\n- `/stats` — Zobacz swoje statystyki i postęp w poziomach.\n- `/leaderboard` — Zobacz top 10 użytkowników z największym czasem w rozmowach.\n\nMiłego czatu i zobacz, kto wspiął się na szczyt!",
+    "stats_not_found": "Nie znaleziono statystyk dla {user}.",
+    "stats_reply": "Statystyki głosowe {user}:\n- Całkowity czas: **{time}**\n- Poziom: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Czas do następnego poziomu (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Czas do następnego poziomu (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Ostatnio widziany w rozmowie głosowej: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Osiągnąłeś maksymalny poziom!",
+    "stats_error": "Błąd podczas pobierania statystyk.",
+    "leaderboard_not_found": "Brak danych w rankingu.",
+    "leaderboard_reply": "Top 10 w rankingu głosowym:\n{leaderboard}",
+    "leaderboard_error": "Błąd podczas pobierania rankingu.",
+    "stats_sessions": "\n- Łączna liczba sesji: **{count}**\n- Śr. czas sesji: **{avg}**\n- Najdłuższa sesja: **{max}**"
 }

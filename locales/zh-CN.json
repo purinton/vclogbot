@@ -1,3 +1,14 @@
 {
-    "help": "这是帮助文本。"
+    "help": "**VCLogBot 帮助**\n\n这个机器人为您的服务器提供了一个语音/视频聊天等级系统！\n\n**工作原理：**\n- 通过在语音或视频通话中花费时间来提升等级。\n- 每个新等级需要更多的通话时间来达到。\n- 大多数功能自动进行——只需加入通话并开始升级即可！\n\n**命令：**\n- `/stats` — 查看您自己的语音统计和等级进度。\n- `/leaderboard` — 查看拥有最多语音时间的前10名用户。\n\n享受聊天，看看谁能登上排行榜！",
+    "stats_not_found": "未找到 {user} 的统计信息。",
+    "stats_reply": "{user} 的语音统计：\n- 总时间：**{time}**\n- 等级：**{level}**{next}{sessions}",
+    "stats_next_level": "\n- 距离下一级 (**{level}**) 还需：<t:{timestamp}:R>",
+    "stats_next_level_static": "\n- 距离下一级 (**{level}**) 还需：**{time}**",
+    "stats_last_seen": "\n- 最近一次语音出现：<t:{lastseen}:R>",
+    "stats_max_level": "\n- 你已达到最高等级！",
+    "stats_error": "获取统计数据时出错。",
+    "leaderboard_not_found": "未找到排行榜数据。",
+    "leaderboard_reply": "语音排行榜前10名：\n{leaderboard}",
+    "leaderboard_error": "获取排行榜时出错。",
+    "stats_sessions": "\n- 总会话数：**{count}**\n- 平均会话时长：**{avg}**\n- 最长会话时长：**{max}**"
 }

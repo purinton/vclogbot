@@ -1,3 +1,14 @@
 {
-    "help": "這是幫助文本。"
+    "help": "**VCLogBot 幫助**\n\n這個機器人為你的伺服器提供語音/視訊聊天等級系統！\n\n**運作方式：**\n- 透過在語音或視訊通話中停留的時間獲得等級。\n- 每個新等級需要更多通話時間來達成。\n- 大部分功能都是自動的—只要加入通話並開始升級！\n\n**指令：**\n- `/stats` — 查看你自己的語音統計及等級進度。\n- `/leaderboard` — 查看語音時間最多的前 10 名用戶。\n\n享受聊天，看看誰攀上排行榜！",
+    "stats_not_found": "找不到 {user} 的統計資料。",
+    "stats_reply": "{user} 的語音統計：\n- 總時間：**{time}**\n- 等級：**{level}**{next}{sessions}",
+    "stats_next_level": "\n- 距離下一等級（**{level}**）還有：<t:{timestamp}:R>",
+    "stats_next_level_static": "\n- 距離下一等級（**{level}**）還有：**{time}**",
+    "stats_last_seen": "\n- 最近一次語音出現時間：<t:{lastseen}:R>",
+    "stats_max_level": "\n- 你已經達到最高等級！",
+    "stats_error": "抓取統計資料時發生錯誤。",
+    "leaderboard_not_found": "找不到排行榜資料。",
+    "leaderboard_reply": "語音排行榜前 10 名：\n{leaderboard}",
+    "leaderboard_error": "抓取排行榜時發生錯誤。",
+    "stats_sessions": "\n- 總會話數：**{count}**\n- 平均會話時間：**{avg}**\n- 最長會話時間：**{max}**"
 }

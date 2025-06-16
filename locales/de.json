@@ -1,3 +1,14 @@
 {
-    "help": "Dies ist der Hilfetext."
+    "help": "**VCLogBot Hilfe**\n\nDieser Bot bietet ein VC (Sprach-/Videochat) Level-System für deinen Server!\n\n**Wie es funktioniert:**\n- Verdiene Levels, indem du Zeit in Sprach- oder Videoanrufen verbringst.\n- Jedes neue Level benötigt mehr Zeit in Anrufen, um es zu erreichen.\n- Die meisten Funktionen laufen automatisch – schließe dich einfach einem Anruf an und steigere dein Level!\n\n**Befehle:**\n- `/stats` — Zeige deine eigenen VC-Statistiken und Level-Fortschritte an.\n- `/leaderboard` — Sieh dir die Top 10 Nutzer mit der meisten VC-Zeit an.\n\nViel Spaß beim Chatten und schau, wer in der Rangliste aufsteigt!",
+    "stats_not_found": "Keine Statistiken für {user} gefunden.",
+    "stats_reply": "{user} Sprach-Statistiken:\n- Gesamtzeit: **{time}**\n- Level: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Zeit bis zum nächsten Level (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Zeit bis zum nächsten Level (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Zuletzt in Sprachkanal gesehen: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Du hast das maximale Level erreicht!",
+    "stats_error": "Fehler beim Abrufen der Statistiken.",
+    "leaderboard_not_found": "Keine Daten für die Rangliste gefunden.",
+    "leaderboard_reply": "Top 10 Sprach-Rangliste:\n{leaderboard}",
+    "leaderboard_error": "Fehler beim Abrufen der Rangliste.",
+    "stats_sessions": "\n- Gesamtsitzungen: **{count}**\n- Durchschnittliche Sitzungsdauer: **{avg}**\n- Längste Sitzung: **{max}**"
 }

@@ -1,3 +1,14 @@
 {
-    "help": "Dit is de helptekst."
+    "help": "**VCLogBot Help**\n\nDeze bot biedt een VC (spraak/video chat) levelsysteem voor je server!\n\n**Hoe het werkt:**\n- Verdien levels door tijd door te brengen in spraak- of videogesprekken.\n- Elk nieuw level vereist meer tijd in gesprekken om te bereiken.\n- De meeste functies zijn automatisch - sluit je gewoon aan bij een gesprek en begin met levelen!\n\n**Commando's:**\n- `/stats` — Bekijk je eigen VC-statistieken en levelprogressie.\n- `/leaderboard` — Zie de top 10 gebruikers met de meeste VC-tijd.\n\nVeel plezier met chatten en kijk wie de ranglijst beklimt!",
+    "stats_not_found": "Geen statistieken gevonden voor {user}.",
+    "stats_reply": "{user} spraakstatistieken:\n- Totale tijd: **{time}**\n- Level: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Tijd tot volgend level (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Tijd tot volgend level (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Laatst gezien in spraak: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Je hebt het max level bereikt!",
+    "stats_error": "Fout bij het ophalen van statistieken.",
+    "leaderboard_not_found": "Geen ranglijstgegevens gevonden.",
+    "leaderboard_reply": "Top 10 Voice Ranglijst:\n{leaderboard}",
+    "leaderboard_error": "Fout bij het ophalen van de ranglijst.",
+    "stats_sessions": "\n- Totaal aantal sessies: **{count}**\n- Gem. sessieduur: **{avg}**\n- Langste sessie: **{max}**"
 }

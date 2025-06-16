@@ -1,3 +1,14 @@
 {
-    "help": "Ez a súgószöveg."
+    "help": "**VCLogBot Pomoc**\n\nTento bot poskytuje systém levelování podle času stráveného ve VC (hlasových/video chatách) na vašem serveru!\n\n**Jak to funguje:**\n- Získávejte levely tím, že trávíte čas ve hlasových nebo video hovorech.\n- Každý další level vyžaduje více času stráveného ve VC.\n- Většina funkcí je automatická — stačí se připojit ke hovoru a začít levelovat!\n\n**Příkazy:**\n- `/stats` — Zobrazí vaše VC statistiky a pokrok v levelování.\n- `/leaderboard` — Ukažte 10 nejlepších uživatelů s nejvyšším časem ve VC.\n\nUžívejte si chatování a sledujte, kdo se vyšplhá na žebříčku!",
+    "stats_not_found": "Statistiky nebyly nalezeny pro {user}.",
+    "stats_reply": "VC statistiky uživatele {user}:\n- Celkový čas: **{time}**\n- Level: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Čas do dalšího levelu (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Čas do dalšího levelu (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Naposledy viděn ve VC: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Dosáhli jste max. levelu!",
+    "stats_error": "Chyba při získávání statistik.",
+    "leaderboard_not_found": "Data pro žebříček nebyla nalezena.",
+    "leaderboard_reply": "Top 10 hlasový žebříček:\n{leaderboard}",
+    "leaderboard_error": "Chyba při získávání žebříčku.",
+    "stats_sessions": "\n- Celkem sezení: **{count}**\n- Prům. délka sezení: **{avg}**\n- Nejdelší sezení: **{max}**"
 }

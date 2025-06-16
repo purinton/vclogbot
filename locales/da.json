@@ -1,3 +1,14 @@
 {
-    "help": "Dette er hjælpeteksten."
+    "help": "**VCLogBot Hjælp**\n\nDenne bot tilbyder et VC (voice/video chat) levelsystem til din server!\n\n**Sådan fungerer det:**\n- Optjen niveauer ved at tilbringe tid i voice- eller videoopkald.\n- Hvert nyt niveau kræver mere tid i opkald for at opnå.\n- De fleste funktioner er automatiske — bare join et opkald og begynd at level up!\n\n**Kommandoer:**\n- `/stats` — Se dine egne VC stats og niveau fremskridt.\n- `/leaderboard` — Se top 10 brugere med mest VC tid.\n\nNyd at chatte og se, hvem der topper leaderboardet!",
+    "stats_not_found": "Ingen stats fundet for {user}.",
+    "stats_reply": "{user} voice stats:\n- Total tid: **{time}**\n- Niveau: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Tid til næste niveau (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Tid til næste niveau (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Sidst set i voice: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Du har nået max niveau!",
+    "stats_error": "Fejl ved hentning af stats.",
+    "leaderboard_not_found": "Ingen leaderboard data fundet.",
+    "leaderboard_reply": "Top 10 Voice Leaderboard:\n{leaderboard}",
+    "leaderboard_error": "Fejl ved hentning af leaderboard.",
+    "stats_sessions": "\n- Totale sessioner: **{count}**\n- Gennemsnitlig session: **{avg}**\n- Længste session: **{max}**"
 }

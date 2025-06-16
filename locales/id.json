@@ -1,3 +1,14 @@
 {
-    "help": "Ini adalah teks bantuan."
+    "help": "**VCLogBot Bantuan**\n\nBot ini menyediakan sistem leveling VC (suara/video chat) untuk server Anda!\n\n**Cara kerjanya:**\n- Dapatkan level dengan menghabiskan waktu dalam panggilan suara atau video.\n- Setiap level baru membutuhkan waktu lebih lama dalam panggilan untuk mencapainya.\n- Sebagian besar fitur otomatis—cukup bergabung ke panggilan dan mulai naik level!\n\n**Perintah:**\n- `/stats` — Melihat statistik VC dan progress level Anda.\n- `/leaderboard` — Melihat 10 pengguna teratas dengan waktu VC terbanyak.\n\nNikmati ngobrol dan lihat siapa yang naik ke papan peringkat!",
+    "stats_not_found": "Tidak ditemukan statistik untuk {user}.",
+    "stats_reply": "Statistik suara {user}:\n- Total waktu: **{time}**\n- Level: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Waktu hingga level berikutnya (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Waktu hingga level berikutnya (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Terakhir terlihat di suara: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Anda telah mencapai level maksimum!",
+    "stats_error": "Terjadi kesalahan saat mengambil statistik.",
+    "leaderboard_not_found": "Data papan peringkat tidak ditemukan.",
+    "leaderboard_reply": "10 Teratas Papan Peringkat Suara:\n{leaderboard}",
+    "leaderboard_error": "Terjadi kesalahan saat mengambil papan peringkat.",
+    "stats_sessions": "\n- Total sesi: **{count}**\n- Rata-rata sesi: **{avg}**\n- Sesi terpanjang: **{max}**"
 }

@@ -1,3 +1,14 @@
 {
-    "help": "Ez a súgószöveg."
+    "help": "**VCLogBot Segítség**\n\nEz a bot egy VC (hang/videohívás) szintlépő rendszert biztosít a szervered számára!\n\n**Hogyan működik:**\n- Szinteket szerezhetsz, ha időt töltesz hang- vagy videóhívásokban.\n- Minden új szinthez több idő szükséges a hívásokban.\n- A legtöbb funkció automatikus – csak csatlakozz egy híváshoz, és kezdj el szintet lépni!\n\n**Parancsok:**\n- `/stats` — Nézd meg a saját VC statisztikáidat és szintelőrehaladásodat.\n- `/leaderboard` — Nézd meg a top 10 felhasználót a legtöbb VC idővel.\n\nJó beszélgetést, és nézd meg, ki kerül fel a ranglistára!",
+    "stats_not_found": "Nincsenek adatok {user} számára.",
+    "stats_reply": "{user} hang statisztikái:\n- Teljes idő: **{time}**\n- Szint: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Következő szintig hátralévő idő (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Következő szintig hátralévő idő (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Utoljára látva hangon: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Elérted a maximum szintet!",
+    "stats_error": "Hiba a statisztikák lekérésekor.",
+    "leaderboard_not_found": "Nincs ranglista adat.",
+    "leaderboard_reply": "Top 10 Hang Ranglista:\n{leaderboard}",
+    "leaderboard_error": "Hiba történt a ranglista lekérésekor.",
+    "stats_sessions": "\n- Összes munkamenet: **{count}**\n- Átlagos munkamenet: **{avg}**\n- Leghosszabb munkamenet: **{max}**"
 }

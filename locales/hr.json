@@ -1,3 +1,14 @@
 {
-    "help": "Ovo je tekst pomoći."
+    "help": "**VCLogBot Pomoć**\n\nOvaj bot pruža VC (glasovni/video chat) sustav za praćenje razine u vašem serveru!\n\n**Kako radi:**\n- Osvojite razine provodeći vrijeme u glasovnim ili video pozivima.\n- Svaka nova razina zahtijeva više vremena u pozivima za postizanje.\n- Većina značajki je automatska—samo se priključite pozivu i počnite stjecati razine!\n\n**Naredbe:**\n- `/stats` — Pogledajte vlastite VC statistike i napredak razine.\n- `/leaderboard` — Pogledajte top 10 korisnika s najviše vremena u VC.\n\nUživajte u chatu i pratite tko se penje na ljestvici!",
+    "stats_not_found": "Nema statistike za {user}.",
+    "stats_reply": "{user} glasovne statistike:\n- Ukupno vrijeme: **{time}**\n- Razina: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Vrijeme do sljedeće razine (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Vrijeme do sljedeće razine (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Zadnji put viđen u glasu: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Dostigli ste maksimalnu razinu!",
+    "stats_error": "Pogreška pri dohvaćanju statistike.",
+    "leaderboard_not_found": "Nema podataka za ljestvicu.",
+    "leaderboard_reply": "Top 10 glasovna ljestvica:\n{leaderboard}",
+    "leaderboard_error": "Pogreška pri dohvaćanju ljestvice.",
+    "stats_sessions": "\n- Ukupno sesija: **{count}**\n- Prosječna sesija: **{avg}**\n- Najduža sesija: **{max}**"
 }

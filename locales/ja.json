@@ -1,3 +1,14 @@
 {
-    "help": "これはヘルプテキストです。"
+    "help": "**VCLogBot ヘルプ**\n\nこのボットは、サーバー向けのVC（音声・ビデオチャット）レベルシステムを提供します！\n\n**仕組み:**\n- 音声やビデオ通話で過ごした時間に応じてレベルを獲得します。\n- 新しいレベルになるには、より多くの通話時間が必要です。\n- ほとんどの機能は自動で動作します。通話に参加してレベルアップを始めましょう！\n\n**コマンド:**\n- `/stats` — 自分のVC統計とレベル進捗を確認します。\n- `/leaderboard` — VC時間が最も多い上位10名を表示します。\n\nチャットを楽しみ、ランキングの上位を目指しましょう！",
+    "stats_not_found": "{user} の統計が見つかりません。",
+    "stats_reply": "{user} のボイス統計情報:\n- 合計時間: **{time}**\n- レベル: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- 次のレベル(**{level}**)まで: <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- 次のレベル(**{level}**)まで: **{time}**",
+    "stats_last_seen": "\n- 最終ボイス参加: <t:{lastseen}:R>",
+    "stats_max_level": "\n- 最大レベルに達しました！",
+    "stats_error": "統計の取得中にエラーが発生しました。",
+    "leaderboard_not_found": "ランキングデータが見つかりません。",
+    "leaderboard_reply": "ボイス上位10名ランキング:\n{leaderboard}",
+    "leaderboard_error": "ランキングの取得中にエラーが発生しました。",
+    "stats_sessions": "\n- 総セッション数: **{count}**\n- 平均セッション時間: **{avg}**\n- 最長セッション時間: **{max}**"
 }

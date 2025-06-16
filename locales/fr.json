@@ -1,3 +1,14 @@
 {
-    "help": "Ceci est le texte d'aide."
+    "help": "**VCLogBot Aide**\n\nCe bot fournit un système de niveaux VC (chat vocal/vidéo) pour votre serveur !\n\n**Comment ça marche :**\n- Gagnez des niveaux en passant du temps dans des appels vocaux ou vidéo.\n- Chaque nouveau niveau nécessite plus de temps dans les appels pour être atteint.\n- La plupart des fonctionnalités sont automatiques — il vous suffit de rejoindre un appel et de commencer à monter en niveau !\n\n**Commandes :**\n- `/stats` — Voir vos propres statistiques VC et la progression de votre niveau.\n- `/leaderboard` — Voir les 10 meilleurs utilisateurs avec le plus de temps en VC.\n\nAmusez-vous à discuter et voyez qui grimpe au classement !",
+    "stats_not_found": "Aucune statistique trouvée pour {user}.",
+    "stats_reply": "Statistiques vocales de {user} :\n- Temps total : **{time}**\n- Niveau : **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Temps avant le prochain niveau (**{level}**) : <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Temps avant le prochain niveau (**{level}**) : **{time}**",
+    "stats_last_seen": "\n- Dernière connexion en voix : <t:{lastseen}:R>",
+    "stats_max_level": "\n- Vous avez atteint le niveau max !",
+    "stats_error": "Erreur lors de la récupération des statistiques.",
+    "leaderboard_not_found": "Aucune donnée de classement trouvée.",
+    "leaderboard_reply": "Top 10 du classement vocal :\n{leaderboard}",
+    "leaderboard_error": "Erreur lors de la récupération du classement.",
+    "stats_sessions": "\n- Nombre total de sessions : **{count}**\n- Durée moyenne des sessions : **{avg}**\n- Session la plus longue : **{max}**"
 }

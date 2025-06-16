@@ -1,3 +1,14 @@
 {
-    "help": "Tai yra pagalbos tekstas."
+    "help": "**VCLogBot Pagalba**\n\nŠis bot'as suteikia VC (balso/vaizdo pokalbių) lygių sistemą jūsų serveryje!\n\n**Kaip tai veikia:**\n- Uždirbk lygius praleisdamas laiką balso arba vaizdo skambučiuose.\n- Kiekvienas naujas lygis reikalauja daugiau laiko skambučių metu.\n- Dauguma funkcijų automatinės—tiesiog prisijunk prie skambučio ir pradėk kilti lygiu!\n\n**Komandos:**\n- `/stats` — Peržiūrėk savo VC statistiką ir lygio pažangą.\n- `/leaderboard` — Pamatyk top 10 vartotojų su daugiausia VC laiko.\n\nMėgaukis pokalbiais ir stebėk, kas kopia į lyderių sąrašą!",
+    "stats_not_found": "Nerasta statistikos vartotojui {user}.",
+    "stats_reply": "{user} balso statistika:\n- Iš viso laiko: **{time}**\n- Lygis: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Laikas iki kito lygio (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Laikas iki kito lygio (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Paskutinį kartą matytas balso pokalbyje: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Jūs pasiekėte maksimalų lygį!",
+    "stats_error": "Klaida gaunant statistiką.",
+    "leaderboard_not_found": "Nerasta lyderių lentelės duomenų.",
+    "leaderboard_reply": "Top 10 balso lyderių:\n{leaderboard}",
+    "leaderboard_error": "Klaida gaunant lyderių lentelę.",
+    "stats_sessions": "\n- Sesijų iš viso: **{count}**\n- Vidutinė sesija: **{avg}**\n- Ilgiausia sesija: **{max}**"
 }

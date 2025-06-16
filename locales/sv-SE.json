@@ -1,3 +1,14 @@
 {
-    "help": "Detta är hjälpinformationen."
+    "help": "**VCLogBot Hjälp**\n\nDen här boten erbjuder ett VC (röst-/videokallel)에 upplevelsesystem för din server!\n\n**Hur det fungerar:**\n- Tjäna nivåer genom att spendera tid i röst- eller videosamtal.\n- Varje ny nivå kräver mer tid i samtal för att uppnås.\n- De flesta funktioner är automatiska—bara gå med i ett samtal och börja avancera!\n\n**Kommandon:**\n- `/stats` — Se dina egna VC-statistik och nivåprogression.\n- `/leaderboard` — Se topp 10 användare med mest VC-tid.\n\nHa kul och se vem som klättrar på topplistan!",
+    "stats_not_found": "Ingen statistik hittades för {user}.",
+    "stats_reply": "{user} röststatistik:\n- Total tid: **{time}**\n- Nivå: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Tid till nästa nivå (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Tid till nästa nivå (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Senast i röst: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Du har nått maxnivån!",
+    "stats_error": "Fel vid hämtning av statistik.",
+    "leaderboard_not_found": "Ingen toppliste-data hittades.",
+    "leaderboard_reply": "Topp 10 Rösttopplistan:\n{leaderboard}",
+    "leaderboard_error": "Fel vid hämtning av topplista.",
+    "stats_sessions": "\n- Totala sessioner: **{count}**\n- Medel-session: **{avg}**\n- Längsta session: **{max}**"
 }

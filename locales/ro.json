@@ -1,3 +1,14 @@
 {
-    "help": "Aceasta este descrierea de ajutor."
+    "help": "**VCLogBot Ajutor**\n\nAcest bot oferă un sistem de nivelare VC (chat vocal/video) pentru serverul tău!\n\n**Cum funcționează:**\n- Câștigi nivele petrecând timp în apeluri vocale sau video.\n- Fiecare nivel nou necesită mai mult timp în apeluri pentru a fi atins.\n- Majoritatea funcțiilor sunt automate—doar intră într-un apel și începe să urci în nivel!\n\n**Comenzi:**\n- `/stats` — Vezi propriile tale statistici VC și progresul nivelului.\n- `/leaderboard` — Vezi top 10 utilizatori cu cel mai mult timp în VC.\n\nBucură-te de chat și vezi cine urcă în clasament!",
+    "stats_not_found": "Nu s-au găsit statistici pentru {user}.",
+    "stats_reply": "Statistici voce pentru {user}:\n- Timp total: **{time}**\n- Nivel: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Timp până la nivelul următor (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Timp până la nivelul următor (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Ultima prezență în voce: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Ai atins nivelul maxim!",
+    "stats_error": "Eroare la preluarea statisticilor.",
+    "leaderboard_not_found": "Nu există date pentru clasament.",
+    "leaderboard_reply": "Top 10 Clasament Voce:\n{leaderboard}",
+    "leaderboard_error": "Eroare la preluarea clasamentului.",
+    "stats_sessions": "\n- Total sesiuni: **{count}**\n- Durata medie a sesiunii: **{avg}**\n- Cea mai lungă sesiune: **{max}**"
 }

@@ -1,3 +1,14 @@
 {
-    "help": "Đây là văn bản trợ giúp."
+    "help": "**VCLogBot Trợ giúp**\n\nBot này cung cấp hệ thống cấp độ VC (chat thoại/video) cho máy chủ của bạn!\n\n**Cách hoạt động:**\n- Kiếm cấp độ bằng cách dành thời gian trong các cuộc gọi thoại hoặc video.\n- Mỗi cấp độ mới cần nhiều thời gian hơn để đạt được.\n- Hầu hết các tính năng đều tự động—chỉ cần tham gia cuộc gọi và bắt đầu thăng cấp!\n\n**Lệnh:**\n- `/stats` — Xem thông tin VC của bạn và tiến trình cấp độ.\n- `/leaderboard` — Xem 10 người dùng đứng đầu về thời gian VC.\n\nChúc bạn trò chuyện vui vẻ và xem ai sẽ đứng đầu bảng xếp hạng!",
+    "stats_not_found": "Không tìm thấy thông tin cho {user}.",
+    "stats_reply": "Thông tin thoại của {user}:\n- Tổng thời gian: **{time}**\n- Cấp độ: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Thời gian đến cấp độ tiếp theo (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Thời gian đến cấp độ tiếp theo (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Lần cuối thấy trong voice: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Bạn đã đạt cấp độ tối đa!",
+    "stats_error": "Lỗi khi lấy thông tin.",
+    "leaderboard_not_found": "Không có dữ liệu bảng xếp hạng.",
+    "leaderboard_reply": "Top 10 Bảng xếp hạng thoại:\n{leaderboard}",
+    "leaderboard_error": "Lỗi khi lấy bảng xếp hạng.",
+    "stats_sessions": "\n- Tổng số phiên: **{count}**\n- Trung bình mỗi phiên: **{avg}**\n- Phiên dài nhất: **{max}**"
 }

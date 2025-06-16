@@ -1,3 +1,14 @@
 {
-    "help": "Esta es la ayuda."
+    "help": "**VCLogBot Ayuda**\n\n¡Este bot proporciona un sistema de niveles para voz/video en tu servidor!\n\n**Cómo funciona:**\n- Gana niveles pasando tiempo en llamadas de voz o video.\n- Cada nuevo nivel requiere más tiempo en llamadas para alcanzarlo.\n- La mayoría de las funciones son automáticas: solo únete a una llamada y comienza a subir de nivel.\n\n**Comandos:**\n- `/stats` — Ve tus propias estadísticas y progreso de nivel en la voz.\n- `/leaderboard` — Mira los 10 usuarios con más tiempo en voz.\n\n¡Disfruta chateando y mira quién escala en la tabla de líderes!",
+    "stats_not_found": "No se encontraron estadísticas para {user}.",
+    "stats_reply": "Estadísticas de voz de {user}:\n- Tiempo total: **{time}**\n- Nivel: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Tiempo hasta el siguiente nivel (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Tiempo hasta el siguiente nivel (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Última vez visto en voz: <t:{lastseen}:R>",
+    "stats_max_level": "\n- ¡Has alcanzado el nivel máximo!",
+    "stats_error": "Error al obtener las estadísticas.",
+    "leaderboard_not_found": "No se encontraron datos de la tabla de líderes.",
+    "leaderboard_reply": "Top 10 de la tabla de voz:\n{leaderboard}",
+    "leaderboard_error": "Error al obtener la tabla de líderes.",
+    "stats_sessions": "\n- Sesiones totales: **{count}**\n- Sesión promedio: **{avg}**\n- Sesión más larga: **{max}**"
 }

@@ -1,3 +1,14 @@
 {
-    "help": "Dette er hjelpeteksten."
+    "help": "**VCLogBot Hjelp**\n\nDenne boten tilbyr et VC (stemme/videochat) nivåsystem for serveren din!\n\n**Slik fungerer det:**\n- Tjen nivåer ved å tilbringe tid i stemme- eller videoanrop.\n- Hvert nytt nivå krever mer tid i anrop for å oppnå.\n- De fleste funksjoner er automatiske – bare bli med i et anrop og begynn å stige i nivå!\n\n**Kommandoer:**\n- `/stats` — Se dine egne VC-statistikker og nivåframgang.\n- `/leaderboard` — Se topp 10 brukere med mest VC-tid.\n\nKos deg med å chatte og se hvem som topper listen!",
+    "stats_not_found": "Ingen statistikk funnet for {user}.",
+    "stats_reply": "{user} stemmestats:\n- Total tid: **{time}**\n- Nivå: **{level}**{next}{sessions}",
+    "stats_next_level": "\n- Tid til neste nivå (**{level}**): <t:{timestamp}:R>",
+    "stats_next_level_static": "\n- Tid til neste nivå (**{level}**): **{time}**",
+    "stats_last_seen": "\n- Sist sett i stemme: <t:{lastseen}:R>",
+    "stats_max_level": "\n- Du har nådd maks nivå!",
+    "stats_error": "Feil ved henting av statistikk.",
+    "leaderboard_not_found": "Ingen ledertavle-data funnet.",
+    "leaderboard_reply": "Topp 10 Stemmeledertabell:\n{leaderboard}",
+    "leaderboard_error": "Feil ved henting av ledertabell.",
+    "stats_sessions": "\n- Totalt antall økter: **{count}**\n- Gj.sn. økt: **{avg}**\n- Lengste økt: **{max}**"
 }
