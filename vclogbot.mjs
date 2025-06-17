@@ -12,25 +12,23 @@ const version = packageJson.version;
 
 const presence = { activities: [{ name: `🎧 Leveling v${version}`, type: 4 }], status: 'online' };
 
-(async () => {
-    const db = await createDb({ log });
-    registerSignals({ shutdownHook: () => db.end() });
-    const client = await createDiscord({
-        log,
-        rootDir: path(import.meta),
-        context: {
-            db,
-            presence,
-            version
-        },
-        intents: {
-            Guilds: true,
-            GuildMessages: true,
-            MessageContent: false,
-            GuildMembers: false,
-            GuildPresences: false,
-            GuildVoiceStates: true,
-        }
-    });
-    registerSignals({ shutdownHook: () => client.destroy() });
-})();
+const db = await createDb({ log });
+registerSignals({ shutdownHook: () => db.end() });
+const client = await createDiscord({
+    log,
+    rootDir: path(import.meta),
+    context: {
+        db,
+        presence,
+        version
+    },
+    intents: {
+        Guilds: true,
+        GuildMessages: true,
+        MessageContent: false,
+        GuildMembers: false,
+        GuildPresences: false,
+        GuildVoiceStates: true,
+    }
+});
+registerSignals({ shutdownHook: () => client.destroy() });

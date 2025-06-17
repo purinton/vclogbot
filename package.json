@@ -1,7 +1,7 @@
 {
     "name": "@purinton/vclogbot",
     "type": "module",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A Discord bot for tracking and rewarding voice channel activity with a leveling system, join/leave messages, and interactive stats commands.",
     "main": "vclogbot.mjs",
     "scripts": {
