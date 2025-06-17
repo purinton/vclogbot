@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import 'dotenv/config';
-import { log, fs, path, pathUrl, registerHandlers, registerSignals } from '@purinton/common';
+import { log, fs, path, registerHandlers, registerSignals } from '@purinton/common';
 import { createDb } from '@purinton/mysql';
 import { createDiscord } from '@purinton/discord';
 
