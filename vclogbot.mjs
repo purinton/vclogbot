@@ -12,6 +12,7 @@ import { createDiscord } from '@purinton/discord';
     const name = `🎧 Leveling v${version}`;
     const status = 'online';
     const db = await createDb();
+    registerSignals({ shutdownHook: db.end() });
     const client = await createDiscord({
         log,
         rootDir: path(import.meta),
@@ -27,11 +28,5 @@ import { createDiscord } from '@purinton/discord';
             db
         },
     });
-    registerSignals({
-        shutdownHook: async () => {
-            await client.destroy();
-            await db.end();
-            log.info('Shutdown complete.');
-        }
-    });
+    registerSignals({ shutdownHook: client.destroy() });
 })();
