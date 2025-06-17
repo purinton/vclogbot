@@ -18,7 +18,6 @@ import { createDiscord } from '@purinton/discord';
         intents: {
             Guilds: true,
             GuildMessages: true,
-            MessageContent: true,
         },
         context: {
             fs,
