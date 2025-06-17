@@ -6,8 +6,10 @@ import { log, fs, path, registerHandlers, registerSignals } from '@purinton/comm
 
 registerHandlers({ log });
 registerSignals({ log });
+
 const packageJson = JSON.parse(fs.readFileSync(path(import.meta, 'package.json')), 'utf8');
 const version = packageJson.version;
+
 const presence = { activities: [{ name: `🎧 Leveling v${version}`, type: 4 }], status: 'online' };
 
 (async () => {
@@ -16,7 +18,11 @@ const presence = { activities: [{ name: `🎧 Leveling v${version}`, type: 4 }],
     const client = await createDiscord({
         log,
         rootDir: path(import.meta),
-        context: { db, presence, version },
+        context: {
+            db,
+            presence,
+            version
+        },
         intents: {
             Guilds: true,
             GuildMessages: true,

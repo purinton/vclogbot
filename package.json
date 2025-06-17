@@ -45,9 +45,9 @@
         ]
     },
     "dependencies": {
-        "@purinton/common": "^1.0.14",
         "@purinton/discord": "^1.0.5",
         "@purinton/mysql": "^1.0.7",
+        "@purinton/common": "^1.0.15",
         "dotenv": "^16.5.0"
     }
 }
