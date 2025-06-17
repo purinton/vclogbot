@@ -2,7 +2,7 @@
     "name": "@purinton/vclogbot",
     "type": "module",
     "version": "1.0.1",
-    "description": "A modern Discord app built with Node.js, based on the purinton/discord foundation.",
+    "description": "A Discord bot for tracking and rewarding voice channel activity with a leveling system, join/leave messages, and interactive stats commands.",
     "main": "vclogbot.mjs",
     "scripts": {
         "start": "node vclogbot.mjs",
@@ -13,8 +13,19 @@
         "url": "git+https://github.com/purinton/vclogbot.git"
     },
     "keywords": [
+        "discord",
+        "bot",
+        "voice",
+        "leveling",
+        "leaderboard",
+        "stats",
+        "discord.js",
+        "locales",
+        "systemd",
+        "docker",
         "vclogbot",
-        "nodejs"
+        "voice channel",
+        "activity tracking"
     ],
     "author": "Russell Purinton <russell@purinton.us>",
     "license": "MIT",
