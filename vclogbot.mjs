@@ -22,11 +22,8 @@ import { createDiscord } from '@purinton/discord';
             GuildVoiceStates: true,
         },
         context: {
-            fs,
-            path,
-            pathUrl,
+            db,
             presence: { activities: [{ name, type: 4 }], status },
-            db
         },
     });
     registerSignals({ shutdownHook: async () => { await client.destroy() } });
