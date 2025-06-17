@@ -1,7 +1,9 @@
 import { timerFunction } from '../src/timer.mjs';
 
 // events/ready.mjs
-export default async function ({ log, db, presence }, client, { timerFunctionFn = timerFunction }) {
+export default async function ({ log, db, presence }, client, {
+    timerFunctionFn = timerFunction
+} = {}) {
     log.debug('ready', { tag: client.user.tag });
     if (presence) client.user.setPresence(presence);
     try {
