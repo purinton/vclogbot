@@ -4,7 +4,7 @@ import { formatTime } from '../src/utils.mjs';
 // Command handler for /leaderboard (standard event export style)
 export default async function ({ log, msg, db }, interaction, {
     formatTimefn = formatTime,
-}) {
+} = {}) {
     try {
         const guildId = interaction.guildId;
         const [rows] = await db.query(
