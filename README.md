@@ -1,8 +1,8 @@
 # [![Purinton Dev](https://purinton.us/logos/brand.png)](https://discord.gg/QSBxQnX7PF)
 
-## @purinton/vclogbot [![npm version](https://img.shields.io/npm/v/@purinton/vclogbot.svg)](https://www.npmjs.com/package/@purinton/vclogbot)[![license](https://img.shields.io/github/license/purinton/vclogbot.svg)](LICENSE)[![build status](https://github.com/purinton/vclogbot/actions/workflows/nodejs.yml/badge.svg)](https://github.com/purinton/vclogbot/actions)
+## vclogbot [![npm version](https://img.shields.io/npm/v/@purinton/vclogbot.svg)](https://www.npmjs.com/package/@purinton/vclogbot)[![license](https://img.shields.io/github/license/purinton/vclogbot.svg)](LICENSE)[![build status](https://github.com/purinton/vclogbot/actions/workflows/nodejs.yml/badge.svg)](https://github.com/purinton/vclogbot/actions)
 
-A modern Discord app built with Node.js, based on the [@purinton/discord](https://github.com/purinton/discord) foundation.
+A Discord bot for tracking and rewarding voice channel activity with a leveling system, join/leave messages, and interactive stats commands.
 
 ---
 
@@ -10,6 +10,7 @@ A modern Discord app built with Node.js, based on the [@purinton/discord](https:
 
 - [Features](#features)
 - [Getting Started](#getting-started)
+- [Usage](#usage)
 - [Configuration](#configuration)
 - [Running as a Service (systemd)](#running-as-a-service-systemd)
 - [Docker](#docker)
@@ -23,13 +24,17 @@ A modern Discord app built with Node.js, based on the [@purinton/discord](https:
 
 ## Features
 
-- Discord.js-based app with ESM support
-- Command and event handler architecture
-- Multi-language/localized responses
-- Environment variable support via dotenv
-- Logging and signal handling via `@purinton/common`
-- Ready for deployment with systemd or Docker
-- Jest for testing
+- **Voice Channel Leveling System**: Tracks user time spent in voice channels and awards levels based on total time.
+- **Join/Leave Messages**: Announces when users join or leave voice channels, including late joins (e.g., after bot restarts or mute/unmute events).
+- **/stats Command**: Shows your current level, total voice time, and progress to the next level.
+- **/leaderboard Command**: Displays the top users in your server by voice channel activity.
+- **Automatic Session Recovery**: Handles missed join events and bot restarts, ensuring accurate tracking.
+- **Locale Support**: Easily add or edit language files in `locales/`.
+- **Logging**: Detailed debug and error logs for troubleshooting.
+- **Systemd & Docker Ready**: Templates and instructions for production deployment.
+- **Jest for testing**
+
+---
 
 ## Getting Started
 
@@ -53,6 +58,24 @@ A modern Discord app built with Node.js, based on the [@purinton/discord](https:
    # or
    node vclogbot.mjs
    ```
+
+## Usage
+
+### Voice Channel Leveling
+
+- Users earn experience by being in voice channels.
+- Levels are calculated using a triangular formula (each level requires more time).
+- Level-up messages are sent in the channel when a user advances.
+
+### Join/Leave Messages
+
+- The bot announces when users join or leave a voice channel.
+- If the bot was offline or missed a join event, it will detect the user on the next relevant event (e.g., mute/unmute) and start tracking.
+
+### Slash-Commands
+
+- `/stats` — Shows your current level, total time, and progress.
+- `/leaderboard` — Shows the top users by voice time in the server.
 
 ## Configuration
 
@@ -96,7 +119,7 @@ A modern Discord app built with Node.js, based on the [@purinton/discord](https:
 ### Events
 
 - Add or modify event handlers in the `events/` directory.
-- Each Discord event (e.g., `ready`, `messageCreate`, `interactionCreate`) has its own handler file.
+- Each Discord event (e.g., `ready`, `messageCreate`, `interactionCreate`, `voiceStateUpdate`) has its own handler file.
 
 ### Locales
 
@@ -113,6 +136,23 @@ A modern Discord app built with Node.js, based on the [@purinton/discord](https:
 
 - Add your tests in the `tests/` folder or alongside your code.
 
+## Folder Structure
+
+```text
+src/           # Core logic and utilities
+commands/      # Slash command definitions and handlers
+events/        # Event handlers (voice, message, etc.)
+locales/       # Locale JSON files
+*.mjs          # Main entry and supporting modules
+```
+
+## Best Practices
+
+- **Keep your app token secret!** Never commit your `.env` file or token to version control.
+- **Use a dedicated, non-root user** for running your app in production.
+- **Monitor logs** for errors or unusual activity.
+- **Check Discord.js documentation** for new features: [https://discord.js.org/](https://discord.js.org/)
+
 ## Support
 
 For help, questions, or to chat with the author and community, visit:
@@ -121,13 +161,16 @@ For help, questions, or to chat with the author and community, visit:
 
 **[Purinton Dev on Discord](https://discord.gg/QSBxQnX7PF)**
 
+Email: <russell.purinton@gmail.com>
+Discord: laozi101
+
 ## License
 
 [MIT © 2025 Russell Purinton](LICENSE)
 
 ## Links
 
-- [GitHub (Template)](https://github.com/purinton/vclogbot)
+- [GitHub (Project)](https://github.com/purinton/vclogbot)
 - [GitHub (Org)](https://github.com/purinton)
 - [GitHub (Personal)](https://github.com/rpurinton)
 - [Discord](https://discord.gg/QSBxQnX7PF)
