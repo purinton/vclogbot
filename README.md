@@ -161,16 +161,13 @@ For help, questions, or to chat with the author and community, visit:
 
 **[Purinton Dev on Discord](https://discord.gg/QSBxQnX7PF)**
 
-Email: <russell.purinton@gmail.com>
-Discord: laozi101
-
 ## License
 
 [MIT © 2025 Russell Purinton](LICENSE)
 
 ## Links
 
-- [GitHub (Project)](https://github.com/purinton/vclogbot)
-- [GitHub (Org)](https://github.com/purinton)
-- [GitHub (Personal)](https://github.com/rpurinton)
+- [GitHub Repo](https://github.com/purinton/vclogbot)
+- [GitHub Org](https://github.com/purinton)
+- [GitHub Personal](https://github.com/rpurinton)
 - [Discord](https://discord.gg/QSBxQnX7PF)
