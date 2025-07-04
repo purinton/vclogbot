@@ -34,7 +34,21 @@ export default async function ({ client, log, db }, oldState, newState, {
         } catch (err) {
             log.error('Error handling voice leave event', err);
         }
-    } else if (newState.channelId) {
+    } 
+    // User switches from one voice channel to another
+    else if (oldState.channelId && newState.channelId && oldState.channelId !== newState.channelId) {
+        try {
+            // Message in old channel: moved to new channel
+            const contentOld = `${getCurrentTimestampfn()} <@${oldState.id}> moved to <#${newState.channelId}>`;
+            await sendMessagefn({ client, channel_id: oldState.channelId, content: contentOld, log });
+            // Message in new channel: moved from old channel
+            const contentNew = `${getCurrentTimestampfn()} <@${newState.id}> moved from <#${oldState.channelId}>`;
+            await sendMessagefn({ client, channel_id: newState.channelId, content: contentNew, log });
+        } catch (err) {
+            log.error('Error handling voice channel switch event', err);
+        }
+    }
+    else if (newState.channelId) {
         // Any event where the user is in a channel (join, mute/unmute, etc)
         try {
             // Check for existing open session
