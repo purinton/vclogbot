@@ -88,8 +88,7 @@ describe('voiceStateUpdate event handler', () => {
         });
     });
 
-    it('does nothing if user switches between channels with open session', async () => {
-        mockDb.query.mockResolvedValueOnce([[{ id: 2 }]]); // open session exists
+    it('sends moved messages when user switches between channels', async () => {
         const oldState = { id: 'user3', guild: { id: 'guild3' }, channelId: 'chan3' };
         const newState = { id: 'user3', guild: { id: 'guild3' }, channelId: 'chan4' };
         await voiceStateUpdateHandler(
@@ -102,9 +101,19 @@ describe('voiceStateUpdate event handler', () => {
                 sendMessagefn: mockSendMessage
             }
         );
-        // Should only check for open session, not insert or update
-        expect(mockDb.query).toHaveBeenCalledTimes(1);
-        expect(mockSendMessage).not.toHaveBeenCalled();
+        expect(mockSendMessage).toHaveBeenCalledTimes(2);
+        expect(mockSendMessage).toHaveBeenCalledWith({
+            client: mockClient,
+            channel_id: 'chan3',
+            content: '12:00:00 <@user3> moved to <#chan4>',
+            log: mockLog
+        });
+        expect(mockSendMessage).toHaveBeenCalledWith({
+            client: mockClient,
+            channel_id: 'chan4',
+            content: '12:00:00 <@user3> moved from <#chan3>',
+            log: mockLog
+        });
     });
 
     it('logs error if db query fails on leave', async () => {
